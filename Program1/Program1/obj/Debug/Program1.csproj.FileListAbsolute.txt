@@ -1,0 +1,13 @@
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.exe.config
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.exe
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.pdb
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.csprojResolveAssemblyReference.cache
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.window_radio.resources
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.Properties.Resources.resources
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.csproj.GenerateResource.Cache
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.exe
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.pdb
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.exe.manifest
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.application
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.exe.manifest
+C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.application

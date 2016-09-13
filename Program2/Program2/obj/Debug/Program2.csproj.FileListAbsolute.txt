@@ -1,0 +1,6 @@
+c:\users\kumin\onedrive\documents\visual studio 2015\Projects\Program2\Program2\bin\Debug\Program2.exe.config
+c:\Users\kumin\OneDrive\Documents\Visual Studio 2015\Projects\Program2\Program2\bin\Debug\Program2.exe
+c:\Users\kumin\OneDrive\Documents\Visual Studio 2015\Projects\Program2\Program2\bin\Debug\Program2.pdb
+c:\Users\kumin\OneDrive\Documents\Visual Studio 2015\Projects\Program2\Program2\obj\Debug\Program2.csprojResolveAssemblyReference.cache
+c:\Users\kumin\OneDrive\Documents\Visual Studio 2015\Projects\Program2\Program2\obj\Debug\Program2.exe
+c:\Users\kumin\OneDrive\Documents\Visual Studio 2015\Projects\Program2\Program2\obj\Debug\Program2.pdb

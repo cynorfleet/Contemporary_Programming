@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Project3.Properties
+namespace Project3_working.Properties
 {
 
 

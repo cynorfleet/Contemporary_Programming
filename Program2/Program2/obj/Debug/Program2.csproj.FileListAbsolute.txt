@@ -7,3 +7,6 @@ c:\Users\kumin\OneDrive\Documents\Visual Studio 2015\Projects\Program2\Program2\
 C:\Users\kumin\GitHub\Contemporary_Programming\Program2\Program2\bin\Debug\Program2.exe.config
 C:\Users\kumin\GitHub\Contemporary_Programming\Program2\Program2\obj\Debug\Program2.exe
 C:\Users\kumin\GitHub\Contemporary_Programming\Program2\Program2\obj\Debug\Program2.pdb
+D:\GitHub\Contemporary_Programming\Program2\Program2\bin\Debug\Program2.exe.config
+D:\GitHub\Contemporary_Programming\Program2\Program2\obj\Debug\Program2.exe
+D:\GitHub\Contemporary_Programming\Program2\Program2\obj\Debug\Program2.pdb

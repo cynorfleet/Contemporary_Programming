@@ -11,3 +11,6 @@ C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.exe.manifest
 C:\Users\kumin\GitHub\Contemp\Program1\Program1\bin\Debug\Program1.application
 C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.exe.manifest
 C:\Users\kumin\GitHub\Contemp\Program1\Program1\obj\Debug\Program1.application
+D:\GitHub\Contemporary_Programming\Program1\Program1\bin\Debug\Program1.exe.config
+D:\GitHub\Contemporary_Programming\Program1\Program1\obj\Debug\Program1.exe
+D:\GitHub\Contemporary_Programming\Program1\Program1\obj\Debug\Program1.pdb

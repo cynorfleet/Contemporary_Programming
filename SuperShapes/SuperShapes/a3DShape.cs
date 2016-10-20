@@ -28,19 +28,26 @@ namespace TheCoolestShapes
     {
         public a3DShape()
         {
-            this.Name = "2D Shape";
-            this.apoint.x = 0;
-            this.apoint.y = 0;
-            this.apoint.z = 0;
-            this.ImagePath = null;
+            Name = "3D Shape";
+        }
+        public virtual void CalcData()
+        {
+            GetSurfaceArea();
+            GetVolume();
         }
 
         public virtual double GetVolume()
         {
-            volume = this.apoint.x * this.apoint.y * this.apoint.z;
+            volume = apoint.x * apoint.y * apoint.z;
             return volume;
         }
         public abstract double GetSurfaceArea();
+
+        public double volume {get;set;}
+        public double surfacearea { get; set; }
+
+        public override string Name { get; set; }
+
         public override string ToString()
         /*-------------------------------------------- ToString -------------
        |  Function: ToString
@@ -50,18 +57,10 @@ namespace TheCoolestShapes
        |  Returns: A string 
        *-------------------------------------------------------------------*/
         {
-            string output = "\nName: " + this.Name + "\nX-Value: " + apoint.x;
-            output += "\nY-Value: " + apoint.y + "\nZ-Value: " + apoint.z;
-            output += "\nVolume: " + volume + "\n Surface Area: " + surfacearea;
+            CalcData();
+            string output = "\nName: " + Name;
+            output += "\nSurface Area: " + GetSurfaceArea() + "\nVolume: " + GetVolume();
             return (output);
         }
-
-        public double volume {get;set;}
-        public double surfacearea { get; set; }
-
-        public Point apoint { get; set; }
-
-        public string ImagePath { get; set; }
-        public string Name { get; set; }
     }
 }

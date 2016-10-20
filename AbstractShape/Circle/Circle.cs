@@ -1,12 +1,32 @@
-﻿using System;
-using TheCoolestShapes;
-
+﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+| Class	:		CIRCLE
+|
+| Author :		Christian Norfleet			
+|
+| Language :	CS
+|
+| Class :		Contemporary Programming
+|
+| Instructor :	Dr. Stringfellow
+|
+| Due Date :	20Oct2016
+|
++---------------------------------------------------------------------------- -
+|
+| Description : This Library provides the blueprint for Circle object
+|
+| Required Features Not Included : A child class that implements this class
+|
+| Known Bugs :	IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
+|				SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE
+|				AND EMAIL "cynorfleet@gmail.com" per Christian Norfleet
+|
+*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
     public class Circle : a2DShape
     {
-        private double radius { get; set; }
-        public override double perimeter { get; set; }
+        public double radius { get; set; }
 
         public Circle(double rad=0)
         {
@@ -28,10 +48,6 @@ namespace TheCoolestShapes
             this.perimeter = 2 * 3.14 * radius ;
             return this.perimeter;
         }
-
-        public override double area { get; set; }
-        public override string ImagePath { get; set; }
-        public override string Name { get; set; }
 
         public override string ToString()
         /*-------------------------------------------- ToString -------------

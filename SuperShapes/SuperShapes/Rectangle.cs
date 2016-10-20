@@ -26,26 +26,34 @@ namespace TheCoolestShapes
 {
     public class Rectangle : a2DShape
     {
-
-        public Rectangle(double x=0, double y=0)
+        public Rectangle()
         {
-            this.Name = "Rectangle";
-            this.apoint.x = x;
-            this.apoint.y = y;
-            this.area = GetArea();
-            this.perimeter = GetPerimeter();
-            this.ImagePath = null;
+            Name = "Rectangle";
+            base.apoint.x = 0.0;
+            base.apoint.y = 0.0;
+            area = GetArea();
+            perimeter = GetPerimeter();
+            ImagePath = null;
+        }
+        public Rectangle(double x, double y = 0.0)
+        {
+            Name = "Rectangle";
+            base.apoint.x = x;
+            base.apoint.y = y;
+            area = GetArea();
+            perimeter = GetPerimeter();
+            ImagePath = null;
         }
 
         public override double GetArea()
         {
-            area = apoint.x * apoint.y;
+            area = base.apoint.x * base.apoint.y;
             return area;
         }
 
         public override double GetPerimeter()
         {
-            perimeter = (apoint.x * 2) + (apoint.y * 2);
+            perimeter = (base.apoint.x * 2) + (base.apoint.y * 2);
             return perimeter;
         }
     }

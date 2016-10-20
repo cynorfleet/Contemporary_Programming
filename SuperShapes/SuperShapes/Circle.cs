@@ -1,5 +1,5 @@
 ﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-| Class	:		RECTANGLE
+| Class	:		CIRCLE
 |
 | Author :		Christian Norfleet			
 |
@@ -13,7 +13,7 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This Library provides the blueprint for Rectangle object
+| Description : This Library provides the blueprint for Circle object
 |
 | Required Features Not Included : A child class that implements this class
 |
@@ -24,28 +24,38 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
-    public class Rectangle : a2DShape
+    public class Circle : a2DShape
     {
+        private const double pi = (double)3.14;
+        public double radius { get; set; }
 
-        public Rectangle(double x=0, double y=0)
+        public Circle()
         {
-            this.Name = "Rectangle";
-            this.apoint.x = x;
-            this.apoint.y = y;
-            this.area = GetArea();
-            this.perimeter = GetPerimeter();
-            this.ImagePath = null;
+            Name = "Circle";
+            apoint.x = 0.0;
+            area = GetArea();
+            perimeter = GetPerimeter();
+            ImagePath = null;
+        }
+
+        public Circle(double rad=0.0, System.String path = "")
+        {
+            Name = "Circle";
+            apoint.x = rad;
+            area = GetArea();
+            perimeter = GetPerimeter();
+            ImagePath = path;
         }
 
         public override double GetArea()
         {
-            area = apoint.x * apoint.y;
+            area = (double)pi * (apoint.x * apoint.x);
             return area;
         }
 
         public override double GetPerimeter()
         {
-            perimeter = (apoint.x * 2) + (apoint.y * 2);
+            perimeter = 2 * pi * apoint.x;
             return perimeter;
         }
     }

@@ -1,5 +1,5 @@
 ﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-| Class	:		CUBE
+| Class	:		SQUARE
 |
 | Author :		Christian Norfleet			
 |
@@ -13,7 +13,7 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This Library provides the blueprint for Cube object
+| Description : This Library provides the blueprint for Square object
 |
 | Required Features Not Included : A child class that implements this class
 |
@@ -24,21 +24,37 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
-    public class Cube : a3DShape
+    public class Square : a2DShape
     {
-        public Cube(double x = 0)
+        public Square()
         {
-            this.Name = "Cube";
-            this.apoint.x = x;
-            this.volume = GetVolume();
-            this.surfacearea = GetSurfaceArea();
-            this.ImagePath = null;
+            Name = "Square";
+            base.apoint.x = 0;
+            area = GetArea();
+            perimeter = GetPerimeter();
+            ImagePath = null;
         }
 
-        public override double GetSurfaceArea()
+        public Square(double x = 0.0)
         {
-            surfacearea = (6 * apoint.x) * (6 * apoint.x);
-            return surfacearea;
+            Name = "Square";
+            base.apoint.x = 0.0;
+            area = GetArea();
+            perimeter = GetPerimeter();
+            ImagePath = null;
         }
+
+        public override double GetArea()
+        {
+            area = base.apoint.x * 2;
+            return area;
+        }
+
+        public override double GetPerimeter()
+        {
+            area = apoint.x * 4;
+            return area;
+        }
+
     }
 }

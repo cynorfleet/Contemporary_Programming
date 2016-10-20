@@ -24,21 +24,21 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
-    public interface Shape
+    public abstract class Shape
     {
-        // holds point info
-        Point apoint
-        { get; set; }
 
         // return Shape's name
-        string Name
+        public abstract string Name
         { set; get; }
 
         // return Image Path to object
-        string ImagePath
+        public virtual string ImagePath
         { set; get; }
 
         // Dumps data in object to string
-        string ToString();
+        public abstract override string ToString();
+
+        // Contains point info
+        public Point apoint = new Point();
     }
 }

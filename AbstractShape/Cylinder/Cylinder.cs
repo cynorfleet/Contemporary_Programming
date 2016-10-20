@@ -1,5 +1,5 @@
 ﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-| Class	:		A3DSHAPE
+| Class	:		CYLINDER
 |
 | Author :		Christian Norfleet			
 |
@@ -13,7 +13,7 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This Library provides the blueprint for Rectangle object
+| Description :  This Library provides the blueprint for Cylinder object
 |
 | Required Features Not Included : A child class that implements this class
 |
@@ -24,23 +24,31 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
-    public abstract class a3DShape : Shape
+    public class Cylinder : a3DShape
     {
-        public a3DShape()
+        public Cylinder(double rad = 0, double height = 0)
         {
-            this.Name = "2D Shape";
-            this.apoint.x = 0;
-            this.apoint.y = 0;
-            this.apoint.z = 0;
+            this.Name = "Cylinder";
+            this.radius = rad;
+            this.apoint.y = height;
+            this.volume = GetVolume();
+            this.surfacearea = GetSurfaceArea();
             this.ImagePath = null;
         }
 
-        public virtual double GetVolume()
+        public double radius { get; private set; }
+
+        public override double GetSurfaceArea()
         {
-            volume = this.apoint.x * this.apoint.y * this.apoint.z;
+            surfacearea = 2 * 3.14 * radius * this.apoint.y + (2 * 3.14 * (radius*radius));
+            return surfacearea;
+        }
+        public override double GetVolume()
+        {
+            volume = 3.14 * (radius * radius) * this.apoint.y;
             return volume;
         }
-        public abstract double GetSurfaceArea();
+
         public override string ToString()
         /*-------------------------------------------- ToString -------------
        |  Function: ToString
@@ -50,18 +58,9 @@ namespace TheCoolestShapes
        |  Returns: A string 
        *-------------------------------------------------------------------*/
         {
-            string output = "\nName: " + this.Name + "\nX-Value: " + apoint.x;
-            output += "\nY-Value: " + apoint.y + "\nZ-Value: " + apoint.z;
-            output += "\nVolume: " + volume + "\n Surface Area: " + surfacearea;
+            string output = "\nName: " + this.Name + "\nRadius: " + radius;
+            output += "\nSurface Area: " + this.surfacearea + "\nVolume: " + this.volume;
             return (output);
         }
-
-        public double volume {get;set;}
-        public double surfacearea { get; set; }
-
-        public Point apoint { get; set; }
-
-        public string ImagePath { get; set; }
-        public string Name { get; set; }
     }
 }

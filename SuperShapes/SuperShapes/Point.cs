@@ -25,20 +25,20 @@ namespace TheCoolestShapes
     public class Point
     {
 
-        Point()
+        public Point()
         /*-------------------------------------------- Point ----------------
         |  Function: Point
         |
         |  Purpose: Default constructor which sets x,y,z values;
         *-------------------------------------------------------------------*/ 
         {
-            this.Name = "Point";
-            this.x = 0;
-            this.y = 0;
-            this.z = 0;
+            Name = "Point";
+            x = 0;
+            y = 0;
+            z = 0;
         }
 
-        Point(int x1, int y1=0, int z1=0)
+        public Point(double x1, double y1 = 0.0, double z1 = 0.0)
         /*-------------------------------------------- Point ---------------
         |  Function: Point
         |
@@ -50,10 +50,10 @@ namespace TheCoolestShapes
         |  Returns:  N/A
         *-------------------------------------------------------------------*/ 
         {
-            this.Name = "Point";
-            this.x = x1;
-            this.y = x1;
-            this.z = x1;
+            Name = "Point";
+            x = x1;
+            y = y1;
+            z = z1;
         }
 
         public double x
@@ -63,8 +63,8 @@ namespace TheCoolestShapes
         |  Returns: A double representing the x-value of a point
         *-------------------------------------------------------------------*/
         {
-            set { }
-            get { return x; }
+            set;
+            get;
         }
 
         public double y
@@ -74,8 +74,8 @@ namespace TheCoolestShapes
         |  Returns: A double representing the y-value of a point
         *-------------------------------------------------------------------*/
         {
-            set { }
-            get { return y; }
+            set;
+            get;
         }
 
         public double z
@@ -85,8 +85,8 @@ namespace TheCoolestShapes
         |  Returns: A double representing the z-value of a point
         *-------------------------------------------------------------------*/
         {
-            set { }
-            get { return z; }
+            set;
+            get;
         }
 
         public string Name
@@ -96,8 +96,8 @@ namespace TheCoolestShapes
         |  Returns: A string
         *-------------------------------------------------------------------*/
         {
-            set { }
-            get { return Name; }
+            set;
+            get;
         }
 
         public override string ToString()
@@ -109,8 +109,8 @@ namespace TheCoolestShapes
        |  Returns: A string 
        *-------------------------------------------------------------------*/
         {
-            string output = "\nName: " + this.Name + "\nX-Value: " + this.x;
-            output += "\nY-Value: " + this.y + "\nZ-Value: " + this.z;
+            string output = "\nName: " + Name + "\nX-Value: " + x;
+            output += "\nY-Value: " + y + "\nZ-Value: " + z;
             return (output);
         }
     }

@@ -1,5 +1,5 @@
 ﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-| Class	:		CUBE
+| Class	:		SUPERSHAPES
 |
 | Author :		Christian Norfleet			
 |
@@ -13,32 +13,16 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This Library provides the blueprint for Cube object
-|
-| Required Features Not Included : A child class that implements this class
+| Description : Main class to construct DLL
 |
 | Known Bugs :	IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
 |				SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE
 |				AND EMAIL "cynorfleet@gmail.com" per Christian Norfleet
 |
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
-namespace TheCoolestShapes
+namespace SuperShapes
 {
-    public class Cube : a3DShape
+    public class SuperShapes
     {
-        public Cube(double x = 0)
-        {
-            this.Name = "Cube";
-            this.apoint.x = x;
-            this.volume = GetVolume();
-            this.surfacearea = GetSurfaceArea();
-            this.ImagePath = null;
-        }
-
-        public override double GetSurfaceArea()
-        {
-            surfacearea = (6 * apoint.x) * (6 * apoint.x);
-            return surfacearea;
-        }
     }
 }

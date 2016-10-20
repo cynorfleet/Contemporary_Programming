@@ -33,11 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AbstractShape">
-      <HintPath>..\..\AbstractShape\AbstractShape\bin\Debug\AbstractShape.dll</HintPath>
-    </Reference>
-    <Reference Include="Point">
-      <HintPath>..\..\AbstractShape\AbstractShape\bin\Debug\Point.dll</HintPath>
+    <Reference Include="SuperShapes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\SuperShapes\SuperShapes\bin\Debug\SuperShapes.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -60,6 +58,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShapeImages.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShapeImages.resx</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -72,6 +75,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ShapeImages.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ShapeImages.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="Properties\DataSources\TheCoolestShapes.Circle.datasource" />
+    <None Include="Properties\DataSources\TheCoolestShapes.Cube.datasource" />
+    <None Include="Properties\DataSources\TheCoolestShapes.Cylinder.datasource" />
+    <None Include="Properties\DataSources\TheCoolestShapes.Rectangle.datasource" />
+    <None Include="Properties\DataSources\TheCoolestShapes.Shape.datasource" />
+    <None Include="Properties\DataSources\TheCoolestShapes.Shpere.datasource" />
+    <None Include="Properties\DataSources\TheCoolestShapes.Square.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -84,6 +98,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Circle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\circle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\square-clip-art-simple_red_square_Vector_Clipart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\rectangle.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\07-cube.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\sphere.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Images\cylinder.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

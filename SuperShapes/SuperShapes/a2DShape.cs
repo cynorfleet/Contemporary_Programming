@@ -22,28 +22,26 @@
 |				AND EMAIL "cynorfleet@gmail.com" per Christian Norfleet
 |
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
+
 namespace TheCoolestShapes
 {
     public abstract class a2DShape : Shape
     {
-
-
         public double perimeter { get; set; }
-
-        public Point apoint { get; set; }
 
         public a2DShape()
         {
-            this.Name = "2D Shape";
-            this.apoint.x = 0;
-            this.apoint.y = 0;
-            this.area = 0;
-            this.ImagePath = null;
+            Name = "2D Shape";
         }
 
         public double area { get; set; }
-        public string ImagePath { get; set; }
-        public string Name { get; set; }
+        public override string Name { get; set; }
+
+        public virtual void CalcData()
+        {
+            GetArea();
+            GetPerimeter();
+        }
 
         public abstract double GetArea();
         /*-------------------------------------------- GetArea ----------
@@ -71,9 +69,9 @@ namespace TheCoolestShapes
        |  Returns: A string 
        *-------------------------------------------------------------------*/
         {
-            string output = "\nName: " + this.Name + "\nX-Value: " + this.apoint.x;
-            output += "\nY-Value: " + this.apoint.y + "\nArea: " + area;
-            output += "\nPerimeter: " + perimeter;
+            CalcData();
+            string output = "\nName: " + Name + "\nArea: " + GetArea();
+            output += "\nPerimeter: " + GetPerimeter();
             return (output);
         }
 

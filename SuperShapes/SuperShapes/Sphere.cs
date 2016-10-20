@@ -1,5 +1,5 @@
 ﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-| Class	:		CUBE
+| Class	:		SPHERE
 |
 | Author :		Christian Norfleet			
 |
@@ -13,7 +13,7 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This Library provides the blueprint for Cube object
+| Description : This Library provides the blueprint for Sphere object
 |
 | Required Features Not Included : A child class that implements this class
 |
@@ -24,21 +24,39 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
-    public class Cube : a3DShape
+    public class Sphere : a3DShape
     {
-        public Cube(double x = 0)
+        private const double pi = (double)3.14;
+
+        public Sphere()
         {
-            this.Name = "Cube";
-            this.apoint.x = x;
-            this.volume = GetVolume();
-            this.surfacearea = GetSurfaceArea();
-            this.ImagePath = null;
+            Name = "Sphere";
+            radius = 0.0;
+            volume = GetVolume();
+            surfacearea = GetSurfaceArea();
+            ImagePath = null;
         }
+
+        public Sphere(double rad = 0.0)
+        {
+            Name = "Sphere";
+            radius = rad;
+            volume = GetVolume();
+            surfacearea = GetSurfaceArea();
+            ImagePath = null;
+        }
+
+        public double radius { get; private set; }
 
         public override double GetSurfaceArea()
         {
-            surfacearea = (6 * apoint.x) * (6 * apoint.x);
+            surfacearea = 4 * pi * (radius * radius);
             return surfacearea;
+        }
+        public override double GetVolume()
+        {
+            volume = 4 * pi * ((radius * radius * radius) / 3);
+            return volume;
         }
     }
 }

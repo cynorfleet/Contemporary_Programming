@@ -1,5 +1,5 @@
 ﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
-| Class	:		A3DSHAPE
+| Class	:		SPHERE
 |
 | Author :		Christian Norfleet			
 |
@@ -13,7 +13,7 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This Library provides the blueprint for Rectangle object
+| Description : This Library provides the blueprint for Sphere object
 |
 | Required Features Not Included : A child class that implements this class
 |
@@ -24,23 +24,29 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 namespace TheCoolestShapes
 {
-    public abstract class a3DShape : Shape
+    public class Shpere : a3DShape
     {
-        public a3DShape()
+        public Shpere(double rad = 0)
         {
-            this.Name = "2D Shape";
-            this.apoint.x = 0;
-            this.apoint.y = 0;
-            this.apoint.z = 0;
+            this.Name = "Sphere";
+            this.radius = rad;
+            this.volume = GetVolume();
+            this.surfacearea = GetSurfaceArea();
             this.ImagePath = null;
         }
 
-        public virtual double GetVolume()
+        public double radius { get; private set; }
+
+        public override double GetSurfaceArea()
         {
-            volume = this.apoint.x * this.apoint.y * this.apoint.z;
-            return volume;
+            this.surfacearea = 4 * 3.14 * (radius * radius);
+            return this.surfacearea;
         }
-        public abstract double GetSurfaceArea();
+        public override double GetVolume()
+        {
+            this. volume = 4 * 3.14 * ((radius * radius * radius) / 3);
+            return this.volume;
+        }
         public override string ToString()
         /*-------------------------------------------- ToString -------------
        |  Function: ToString
@@ -50,18 +56,9 @@ namespace TheCoolestShapes
        |  Returns: A string 
        *-------------------------------------------------------------------*/
         {
-            string output = "\nName: " + this.Name + "\nX-Value: " + apoint.x;
-            output += "\nY-Value: " + apoint.y + "\nZ-Value: " + apoint.z;
-            output += "\nVolume: " + volume + "\n Surface Area: " + surfacearea;
+            string output = "\nName: " + this.Name + "\nRadius: " + radius;
+            output += "\nSurface Area: " + this.surfacearea + "\nVolume: " + this.volume;
             return (output);
         }
-
-        public double volume {get;set;}
-        public double surfacearea { get; set; }
-
-        public Point apoint { get; set; }
-
-        public string ImagePath { get; set; }
-        public string Name { get; set; }
     }
 }

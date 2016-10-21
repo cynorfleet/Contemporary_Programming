@@ -1,4 +1,5 @@
-﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+﻿using System;
+/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
 | Class	:		SQUARE
 |
 | Author :		Christian Norfleet			
@@ -26,35 +27,56 @@ namespace TheCoolestShapes
 {
     public class Square : a2DShape
     {
+        private double side;
+
         public Square()
         {
             Name = "Square";
-            base.apoint.x = 0;
             area = GetArea();
             perimeter = GetPerimeter();
             ImagePath = null;
         }
 
-        public Square(double x = 0.0)
+        public Square(double[] coord1, double[] coord2)
         {
             Name = "Square";
-            base.apoint.x = 0.0;
+            ImagePath = null;
+            point[0].x = coord1[0];
+            point[0].y = coord1[1];
+            point[1].y = coord2[1];
+            point[0].active = true;
+            point[1].active = true;
             area = GetArea();
             perimeter = GetPerimeter();
-            ImagePath = null;
         }
 
         public override double GetArea()
         {
-            area = base.apoint.x * 2;
+            GetDimensions();
+            // Grab a side from length and width
+            side = dimensions[0];
+            area = side * side;
+            OtherPoints();
             return area;
         }
 
         public override double GetPerimeter()
         {
-            area = apoint.x * 4;
-            return area;
+            GetDimensions();
+            side = dimensions[0];
+            perimeter = side * 4;
+            OtherPoints();
+            return perimeter;
         }
 
+        public void OtherPoints()
+        {
+            point[1].x = point[0].x + side;
+            point[1].y = point[0].y;
+            point[2].x = point[1].x;
+            point[2].x = point[1].y + side;
+            point[3].x = point[2].x - side;
+            point[3].x = point[2].y;
+        }
     }
 }

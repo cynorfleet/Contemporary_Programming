@@ -29,6 +29,7 @@ namespace TheCoolestShapes
         public a3DShape()
         {
             Name = "3D Shape";
+            point = new Point[4];
         }
         public virtual void CalcData()
         {
@@ -36,11 +37,7 @@ namespace TheCoolestShapes
             GetVolume();
         }
 
-        public virtual double GetVolume()
-        {
-            volume = apoint.x * apoint.y * apoint.z;
-            return volume;
-        }
+        public abstract double GetVolume();
         public abstract double GetSurfaceArea();
 
         public double volume {get;set;}

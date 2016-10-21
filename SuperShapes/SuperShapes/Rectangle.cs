@@ -26,35 +26,52 @@ namespace TheCoolestShapes
 {
     public class Rectangle : a2DShape
     {
+        private double length;
+        private double width;
+
         public Rectangle()
         {
             Name = "Rectangle";
-            base.apoint.x = 0.0;
-            base.apoint.y = 0.0;
             area = GetArea();
             perimeter = GetPerimeter();
             ImagePath = null;
         }
-        public Rectangle(double x, double y = 0.0)
+        public Rectangle(double[] coord1, double[] coord2, double[] coord3)
         {
             Name = "Rectangle";
-            base.apoint.x = x;
-            base.apoint.y = y;
+            ImagePath = null;
+            point[0].x = coord1[0];
+            point[0].y = coord1[1];
+            point[1].x = coord2[0];
+            point[1].y = coord2[1];
+            point[2].x = coord3[0];
+            point[2].y = coord3[1];
+            // flag active points
+            for (var i = 0; i < 3; i++)
+                point[i].active = true;
+
             area = GetArea();
             perimeter = GetPerimeter();
-            ImagePath = null;
-        }
-
-        public override double GetArea()
-        {
-            area = base.apoint.x * base.apoint.y;
-            return area;
         }
 
         public override double GetPerimeter()
         {
-            perimeter = (base.apoint.x * 2) + (base.apoint.y * 2);
+            GetDimensions();
+            // Grab a side from length and width
+            length = dimensions[0];
+            width = dimensions[1];
+            perimeter = (length * 2) + (width * 2);
             return perimeter;
+        }
+
+        public override double GetArea()
+        {
+            GetDimensions();
+            // Grab a side from length and width
+            length = dimensions[0];
+            width = dimensions[1];
+            area = length * width;
+            return area;
         }
     }
 }

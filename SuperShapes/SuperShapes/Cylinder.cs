@@ -27,41 +27,40 @@ namespace TheCoolestShapes
     public class Cylinder : a3DShape
     {
         private const double pi = (double)3.14;
+        private double radius { get; set; }
+        private double height { get; set; }
 
         public Cylinder()
         {
             Name = "Cylinder";
             radius = 0.0;
-            base.apoint.y = 0.0;
             volume = GetVolume();
             surfacearea = GetSurfaceArea();
             ImagePath = null;
         }
 
-        public Cylinder(double rad = 0.0, double height = 0.0)
+        public Cylinder(double rad, double[] coord1, double[] coord2)
         {
             Name = "Cylinder";
             radius = rad;
-            try
-            {
-                base.apoint.y = height;
-            }
-            catch (System.Exception ex)
-            {
-                ex.ToString();
-            }
+            point[0].x = coord1[0];
+            point[0].y = coord1[1];
+            point[1].y = coord2[1];
+            point[0].active = true;
+            point[1].active = true;
             volume = GetVolume();
             surfacearea = GetSurfaceArea();
             ImagePath = null;
         }
 
-        public double radius { get; private set; }
-
         public override double GetSurfaceArea()
         {
+            GetDimensions();
+            //Get the height
+            height = point[1].y - point[0].y;
             try
             {
-                surfacearea = 2 * pi * radius * apoint.y + (2 * pi * (radius * radius));
+                surfacearea = 2 * pi * radius * height + (2 * pi * (radius * radius));
             }
             catch (System.Exception ex)
             {
@@ -74,7 +73,7 @@ namespace TheCoolestShapes
         {
             try
             {
-                volume = pi * (radius * radius) * apoint.y;
+                volume = pi * (radius * radius) * height;
             }
             catch (System.Exception ex)
             {

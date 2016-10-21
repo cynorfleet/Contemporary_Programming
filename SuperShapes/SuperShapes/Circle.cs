@@ -32,31 +32,46 @@ namespace TheCoolestShapes
         public Circle()
         {
             Name = "Circle";
-            apoint.x = 0.0;
             area = GetArea();
             perimeter = GetPerimeter();
             ImagePath = null;
         }
 
-        public Circle(double rad=0.0, System.String path = "")
+        public Circle(double rad=0.0)
         {
             Name = "Circle";
-            apoint.x = rad;
+            radius = rad;
             area = GetArea();
             perimeter = GetPerimeter();
-            ImagePath = path;
+            ImagePath = null;
         }
 
         public override double GetArea()
         {
-            area = (double)pi * (apoint.x * apoint.x);
+            GetDimensions();
+            area = (double)pi * (radius * radius);
             return area;
         }
 
         public override double GetPerimeter()
         {
-            perimeter = 2 * pi * apoint.x;
+            perimeter = 2 * pi * radius;
             return perimeter;
+        }
+
+        public override string ToString()
+        /*-------------------------------------------- ToString -------------
+       |  Function: ToString
+       |
+       |  Purpose: Provides a data dump of current object
+       |
+       |  Returns: A string 
+       *-------------------------------------------------------------------*/
+        {
+            CalcData();
+            string output = "\nName: " + Name + "\nArea: " + GetArea();
+            output += "\nCircumference: " + GetPerimeter();
+            return (output);
         }
     }
 }

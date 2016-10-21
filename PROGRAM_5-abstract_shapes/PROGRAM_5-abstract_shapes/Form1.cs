@@ -29,9 +29,6 @@ namespace PROGRAM_5_abstract_shapes
 
         void YankData(Shape shape)
         {
-            shape.apoint.x = (double)Variable1.Value;
-            shape.apoint.y = (double)Variable2.Value;
-            shape.apoint.z = (double)Variable3.Value;
             InfoBox.Text = shape.ToString();
             ShapeImage.Image = image;
         }
@@ -45,7 +42,7 @@ namespace PROGRAM_5_abstract_shapes
                         ?? new Circle((double)Variable1.Value);
                     shape = circle;
                     Variable1.Enabled = true;
-                    Variable2.Enabled = false;
+                    Variable2.Enabled = true;
                     Variable3.Enabled = false;
                     image = ShapeImages.circle;
                     break;

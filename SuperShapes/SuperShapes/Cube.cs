@@ -1,4 +1,5 @@
-﻿/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
+﻿using System;
+/*= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == ==
 | Class	:		CUBE
 |
 | Author :		Christian Norfleet			
@@ -26,19 +27,24 @@ namespace TheCoolestShapes
 {
     public class Cube : a3DShape
     {
+        private double side;
+
         public Cube()
         {
             Name = "Cube";
-            base.apoint.x = 0;
             volume = GetVolume();
             surfacearea = GetSurfaceArea();
             ImagePath = null;
         }
 
-        public Cube(double x = 0.0)
+        public Cube(double[] coord1, double[] coord2)
         {
             Name = "Cube";
-            base.apoint.x = x;
+            point[0].x = coord1[0];
+            point[0].y = coord1[1];
+            point[1].y = coord2[1];
+            point[0].active = true;
+            point[1].active = true;
             volume = GetVolume();
             surfacearea = GetSurfaceArea();
             ImagePath = null;
@@ -46,14 +52,16 @@ namespace TheCoolestShapes
 
         public override double GetSurfaceArea()
         {
-            surfacearea = (6 * base.apoint.x) * (6 * base.apoint.x);
+            side = Math.Abs(point[1].y - point[0].y);
+            surfacearea = 6 * (side* side);
             return surfacearea;
         }
 
         public override double GetVolume()
         {
-            volume = (base.apoint.x) * (base.apoint.x) * (base.apoint.x);
-            return surfacearea;
+            side = Math.Abs(point[1].y - point[0].y); ;
+            volume = side * side * side;
+            return volume;
         }
     }
 }

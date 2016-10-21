@@ -24,6 +24,7 @@ namespace TheCoolestShapes
 {
     public class Point
     {
+        
 
         public Point()
         /*-------------------------------------------- Point ----------------
@@ -36,9 +37,10 @@ namespace TheCoolestShapes
             x = 0;
             y = 0;
             z = 0;
+            active = false;
         }
 
-        public Point(double x1, double y1 = 0.0, double z1 = 0.0)
+        public Point(double x1, double y1, double z1 = 0.0)
         /*-------------------------------------------- Point ---------------
         |  Function: Point
         |
@@ -54,6 +56,7 @@ namespace TheCoolestShapes
             x = x1;
             y = y1;
             z = z1;
+            active = false;
         }
 
         public double x
@@ -90,6 +93,17 @@ namespace TheCoolestShapes
         }
 
         public string Name
+        /*-------------------------------------------- Name -----------------
+        |  Purpose: Sets/Provides the name ob the object
+        |
+        |  Returns: A string
+        *-------------------------------------------------------------------*/
+        {
+            set;
+            get;
+        }
+
+        public bool active
         /*-------------------------------------------- Name -----------------
         |  Purpose: Sets/Provides the name ob the object
         |

@@ -23,6 +23,8 @@
 |
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 
+using System;
+
 namespace TheCoolestShapes
 {
     public abstract class a2DShape : Shape
@@ -32,6 +34,7 @@ namespace TheCoolestShapes
         public a2DShape()
         {
             Name = "2D Shape";
+            point = new Point[4];
         }
 
         public double area { get; set; }
@@ -74,6 +77,5 @@ namespace TheCoolestShapes
             output += "\nPerimeter: " + GetPerimeter();
             return (output);
         }
-
     }
 }

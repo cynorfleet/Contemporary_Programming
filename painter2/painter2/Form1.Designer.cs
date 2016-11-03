@@ -52,13 +52,13 @@
             this.normalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.largeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ModeBox1 = new System.Windows.Forms.GroupBox();
             this.Mode = new System.Windows.Forms.Label();
+            this.ColorWheelBox = new System.Windows.Forms.Button();
+            this.ColorPickerBox = new System.Windows.Forms.GroupBox();
             this.ColorBox.SuspendLayout();
             this.StyleBox.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.ModeBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +67,7 @@
             this.canvas.BackColor = System.Drawing.Color.White;
             this.canvas.Location = new System.Drawing.Point(161, 44);
             this.canvas.Name = "canvas";
-            this.canvas.Size = new System.Drawing.Size(617, 506);
+            this.canvas.Size = new System.Drawing.Size(617, 486);
             this.canvas.TabIndex = 2;
             this.canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PainterForm_MouseDown);
             this.canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.PainterForm_MouseMove);
@@ -202,7 +202,7 @@
             // Clear
             // 
             this.Clear.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Clear.Location = new System.Drawing.Point(3, 463);
+            this.Clear.Location = new System.Drawing.Point(3, 443);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(143, 87);
             this.Clear.TabIndex = 3;
@@ -217,7 +217,7 @@
             this.styleToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(790, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(801, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -237,7 +237,7 @@
             // 
             this.blackToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black;
             this.blackToolStripMenuItem.Name = "blackToolStripMenuItem";
-            this.blackToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.blackToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.blackToolStripMenuItem.Tag = "Black";
             this.blackToolStripMenuItem.Text = "Black";
             this.blackToolStripMenuItem.Click += new System.EventHandler(this.MenuColor_Clicked);
@@ -246,7 +246,7 @@
             // 
             this.redToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Red;
             this.redToolStripMenuItem.Name = "redToolStripMenuItem";
-            this.redToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.redToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.redToolStripMenuItem.Tag = "Red";
             this.redToolStripMenuItem.Text = "Red";
             this.redToolStripMenuItem.Click += new System.EventHandler(this.MenuColor_Clicked);
@@ -255,7 +255,7 @@
             // 
             this.greenToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Green;
             this.greenToolStripMenuItem.Name = "greenToolStripMenuItem";
-            this.greenToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.greenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.greenToolStripMenuItem.Tag = "Green";
             this.greenToolStripMenuItem.Text = "Green";
             this.greenToolStripMenuItem.Click += new System.EventHandler(this.MenuColor_Clicked);
@@ -264,7 +264,7 @@
             // 
             this.blueToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Blue;
             this.blueToolStripMenuItem.Name = "blueToolStripMenuItem";
-            this.blueToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.blueToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.blueToolStripMenuItem.Tag = "Blue";
             this.blueToolStripMenuItem.Text = "Blue";
             this.blueToolStripMenuItem.Click += new System.EventHandler(this.MenuColor_Clicked);
@@ -272,7 +272,7 @@
             // eraseToolStripMenuItem
             // 
             this.eraseToolStripMenuItem.Name = "eraseToolStripMenuItem";
-            this.eraseToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
+            this.eraseToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.eraseToolStripMenuItem.Tag = "Erase";
             this.eraseToolStripMenuItem.Text = "Erase";
             this.eraseToolStripMenuItem.Click += new System.EventHandler(this.MenuColor_Clicked);
@@ -290,7 +290,7 @@
             // smallToolStripMenuItem
             // 
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
-            this.smallToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.smallToolStripMenuItem.Tag = "1";
             this.smallToolStripMenuItem.Text = "Small";
             this.smallToolStripMenuItem.Click += new System.EventHandler(this.MenuSize_CheckedChanged);
@@ -298,7 +298,7 @@
             // normalToolStripMenuItem
             // 
             this.normalToolStripMenuItem.Name = "normalToolStripMenuItem";
-            this.normalToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.normalToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.normalToolStripMenuItem.Tag = "6";
             this.normalToolStripMenuItem.Text = "Normal";
             this.normalToolStripMenuItem.Click += new System.EventHandler(this.MenuSize_CheckedChanged);
@@ -306,7 +306,7 @@
             // largeToolStripMenuItem
             // 
             this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
-            this.largeToolStripMenuItem.Size = new System.Drawing.Size(114, 22);
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.largeToolStripMenuItem.Tag = "12";
             this.largeToolStripMenuItem.Text = "Large";
             this.largeToolStripMenuItem.Click += new System.EventHandler(this.MenuSize_CheckedChanged);
@@ -316,17 +316,6 @@
             this.colorDialog1.AnyColor = true;
             this.colorDialog1.FullOpen = true;
             this.colorDialog1.SolidColorOnly = true;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::painter2.Properties.Resources.color_wheel;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 334);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(143, 123);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.ColorWheel_event);
             // 
             // ModeBox1
             // 
@@ -349,19 +338,38 @@
             this.Mode.TabIndex = 0;
             this.Mode.Text = "Paint";
             // 
+            // ColorWheelBox
+            // 
+            this.ColorWheelBox.Location = new System.Drawing.Point(12, 351);
+            this.ColorWheelBox.Name = "ColorWheelBox";
+            this.ColorWheelBox.Size = new System.Drawing.Size(120, 80);
+            this.ColorWheelBox.TabIndex = 7;
+            this.ColorWheelBox.UseVisualStyleBackColor = true;
+            this.ColorWheelBox.Click += new System.EventHandler(this.ColorWheel_event);
+            // 
+            // ColorPickerBox
+            // 
+            this.ColorPickerBox.Location = new System.Drawing.Point(3, 337);
+            this.ColorPickerBox.Name = "ColorPickerBox";
+            this.ColorPickerBox.Size = new System.Drawing.Size(143, 100);
+            this.ColorPickerBox.TabIndex = 8;
+            this.ColorPickerBox.TabStop = false;
+            this.ColorPickerBox.Text = "Color Picker";
+            // 
             // PainterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(790, 562);
+            this.ClientSize = new System.Drawing.Size(801, 541);
+            this.Controls.Add(this.ColorWheelBox);
             this.Controls.Add(this.ModeBox1);
             this.Controls.Add(this.Clear);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.ColorBox);
             this.Controls.Add(this.canvas);
             this.Controls.Add(this.StyleBox);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.ColorPickerBox);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PainterForm";
             this.Text = "Form1";
@@ -371,7 +379,6 @@
             this.StyleBox.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ModeBox1.ResumeLayout(false);
             this.ModeBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -405,9 +412,10 @@
         private System.Windows.Forms.ToolStripMenuItem normalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.GroupBox ModeBox1;
         private System.Windows.Forms.Label Mode;
+        private System.Windows.Forms.Button ColorWheelBox;
+        private System.Windows.Forms.GroupBox ColorPickerBox;
     }
 }
 

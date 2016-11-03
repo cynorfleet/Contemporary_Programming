@@ -18,6 +18,12 @@ namespace Painter
             InitializeComponent();
             Normal.Checked = true;
             Black.Checked = true;
+            LoadColorWheel();
+        }
+
+        private void LoadColorWheel()
+        {
+            ColorWheelBox.BackColor = color;
         }
 
         private void Size_CheckedChanged(object sender, EventArgs e)
@@ -50,6 +56,7 @@ namespace Painter
                 if (cntrl.FlatAppearance.BorderColor == color)
                     cntrl.Checked = true;
             }
+            LoadColorWheel();
         }
 
         private void Color_CheckedChanged(object sender, EventArgs e)
@@ -62,6 +69,7 @@ namespace Painter
                 color = canvas.BackColor;
                 Mode.Text = "Erase";
             }
+            LoadColorWheel();
         }
 
 
@@ -99,6 +107,7 @@ namespace Painter
                     cntrl.Checked = false;
                 }
             }
+            LoadColorWheel();
         }
 
         private void ClearScreen(object sender, MouseEventArgs e)

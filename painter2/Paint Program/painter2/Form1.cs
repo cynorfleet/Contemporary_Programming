@@ -243,5 +243,12 @@ namespace Painter
             RadioButton Style = sender as RadioButton;
             brushsize = Int32.Parse(Style.Tag.ToString());
         }
+
+        private void Brush_hover(object sender, EventArgs e)
+        {
+            Panel canvas = sender as Panel;
+            Cursor myCursor = new Cursor("cursor.cur");
+            canvas.Cursor = myCursor;
+        }
     }
 }

@@ -51,6 +51,31 @@ namespace Painter
             LoadColorWheel();
         }
 
+        private void Brush_hover(object sender, EventArgs e)
+        /*-------------------------------------------- Brush_hover ----------
+        |  Function: 	Brush_hover()
+        |
+        |  Purpose: 	Will auto-MAGIK-ly change the icon to a paint brush on hover
+        |
+        |  Returns:  	N/A
+        *---------------------------------------------------------------------*/
+        {
+            //  Capture panel object
+            Panel canvas = sender as Panel;
+
+            //  Change the cursor
+            try
+            {
+                Cursor myCursor = new Cursor("../../assets/cursor.cur");
+                canvas.Cursor = myCursor;
+            }
+            catch
+            {
+                Cursor myCursor = new Cursor("cursor.cur");
+                canvas.Cursor = myCursor;
+            }
+        }
+
         private void ClearScreen(object sender, MouseEventArgs e)
         /*-------------------------------------------- ClearScreen ----------
         |  Function: 	ClearScreen()
@@ -242,13 +267,6 @@ namespace Painter
             //  Use the predefined Tag to grab correct brush size
             RadioButton Style = sender as RadioButton;
             brushsize = Int32.Parse(Style.Tag.ToString());
-        }
-
-        private void Brush_hover(object sender, EventArgs e)
-        {
-            Panel canvas = sender as Panel;
-            Cursor myCursor = new Cursor("cursor.cur");
-            canvas.Cursor = myCursor;
         }
     }
 }

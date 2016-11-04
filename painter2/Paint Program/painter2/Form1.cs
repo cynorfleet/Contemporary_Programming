@@ -55,7 +55,8 @@ namespace Painter
         /*-------------------------------------------- Brush_hover ----------
         |  Function: 	Brush_hover()
         |
-        |  Purpose: 	Will auto-MAGIK-ly change the icon to a paint brush on hover
+        |  Purpose: 	Will auto-MAGIK-ly change the icon to a paint brush/
+        |               eraser on hover
         |
         |  Returns:  	N/A
         *---------------------------------------------------------------------*/
@@ -63,7 +64,7 @@ namespace Painter
             //  Capture panel object
             Panel canvas = sender as Panel;
 
-            //  Change the cursor
+            //  Change the brush cursor
             try
             {
                 Cursor myCursor = new Cursor("../../assets/cursor.cur");
@@ -73,6 +74,21 @@ namespace Painter
             {
                 Cursor myCursor = new Cursor("cursor.cur");
                 canvas.Cursor = myCursor;
+            }
+
+            //  Change the eraser cursor
+            if (Erase.Checked)
+            {
+                try
+                {
+                    Cursor myCursor = new Cursor("../../assets/eraser_cur.cur");
+                    canvas.Cursor = myCursor;
+                }
+                catch
+                {
+                    Cursor myCursor = new Cursor("eraser_cur.cur");
+                    canvas.Cursor = myCursor;
+                }
             }
         }
 

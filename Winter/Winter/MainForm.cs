@@ -12,26 +12,21 @@ namespace Winter
 {
     public partial class main_form : Form
     {
-        // Init the graphics object
-        Bitmap drawingSurface = new Bitmap(640, 480);
-        Bitmap drawingSurface2 = new Bitmap(640, 480);
-
         public main_form()
         {
             InitializeComponent();
-
         }
+
         protected override void OnPaint(PaintEventArgs e)
         {
-
+            // Init the graphics object
+            Bitmap drawingSurface = new Bitmap(640, 480);
             Graphics gfx = Graphics.FromImage(drawingSurface);
-            Graphics gfx2 = Graphics.FromImage(drawingSurface2);
 
-            // Setup the brushes
-            Pen pencil = new Pen(Color.Black);
-            SolidBrush paintbrush = new SolidBrush(Color.Red);
+            // Choose Font
+            Font msgfont = new Font("Terminal", 40);
 
-            // Testing
+            // Set background color
             gfx.FillRectangle(Brushes.Red, 0, 0, 600, 400);
 
             // House
@@ -41,16 +36,13 @@ namespace Winter
 
             // North Pole
             gfx.FillRectangle(Brushes.Chocolate, 275, 325, 25, 75);
-            gfx.DrawEllipse(Pens.AntiqueWhite, 265, 284, 40, 40);
+            gfx.FillEllipse(Brushes.AntiqueWhite, 265, 284, 40, 40);
+
+            // Draw Message
+            gfx.DrawString("MERRY CHRISTMAS", new Font("Terminal", 35),
+                Brushes.LawnGreen, new Point(5, 5));
 
             Canvas.BackgroundImage = drawingSurface;
-
-            // 2nd picture
-           // gfx2.CopyFromScreen(Canvas.Location, Point.Empty, Canvas.Size);
-            // Fill globe
-            gfx2.FillEllipse(Brushes.LawnGreen, 265, 284, 40, 40);
-
-            Canvas.BackgroundImage = drawingSurface2;
         }
     }
 }

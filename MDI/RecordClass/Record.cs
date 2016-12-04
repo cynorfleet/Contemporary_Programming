@@ -47,8 +47,6 @@ namespace RecordClass
             |
             |  Purpose: 	Initializes attributes
             |
-            |  Parameters:  N/A
-            |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
             ID = 0;
@@ -60,6 +58,16 @@ namespace RecordClass
 
         public Record(Record otherrecord)
         {
+            /*-------------------------------------------- Record ----------
+            |  Function: 	Record()
+            |
+            |  Purpose: 	Copy constructor
+            |
+            |  Parameters:
+            |	otherrecord (IN) -- another Record object
+            |
+            |  Returns:  	N/A
+            *---------------------------------------------------------------------*/
             ID = otherrecord.ID;
             Name = otherrecord.Name;
             QtyReq = otherrecord.QtyReq;
@@ -74,8 +82,6 @@ namespace RecordClass
             |
             |  Purpose: 	Initializes attributes
             |
-            |  Parameters:  N/A
-            |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
             ID = id;
@@ -85,7 +91,7 @@ namespace RecordClass
             Practice = practice;
         }
 
-        //          Attributes          //
+        //              Attributes              //
         public int ID { get; set; }
 
         public string Name { get; set; }

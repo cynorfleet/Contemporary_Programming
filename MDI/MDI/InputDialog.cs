@@ -27,22 +27,15 @@ namespace MDI
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            Record temprecord = new Record();
-
-            temprecord.Name = textBoxName.Text;
-            temprecord.ID = Int32.Parse(textBoxID.Text);
-            temprecord.QtyReq = Int32.Parse(textBoxQtyRequired.Text);
-            temprecord.Quantity = Int32.Parse(textBoxQty.Text);
-
-            ListViewItem[] listboxitem = new ListViewItem[1];
+            ListViewItem listboxitem = new ListViewItem();
 
             // Create items and three sets of subitems for each item.
-            listboxitem[0] = new ListViewItem(temprecord.ID + "", 0);
-            listboxitem[0].SubItems.Add(temprecord.Name);
-            listboxitem[0].SubItems.Add(temprecord.QtyReq + "");
-            listboxitem[0].SubItems.Add(temprecord.Quantity + "");
+            listboxitem = new ListViewItem(textBoxID.Text, 0);
+            listboxitem.SubItems.Add(textBoxName.Text);
+            listboxitem.SubItems.Add(textBoxQtyRequired.Text);
+            listboxitem.SubItems.Add(textBoxQty.Text);
 
-            MainForm.childstack.Peek().ListItem.Items.AddRange(listboxitem);
+            MainForm.childstack.Peek().ListItem.Items.Add(listboxitem);
             this.Close();
         }
     }

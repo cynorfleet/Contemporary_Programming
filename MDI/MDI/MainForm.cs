@@ -40,6 +40,25 @@ namespace MDI
             childList.Last().Show();
         }
 
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var listbox = childstack.Peek().ListItem;
+            if (listbox.SelectedItems.Count > 0)
+            {
+                var confirmation = MessageBox.Show("Are you sure u want to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmation == DialogResult.Yes)
+                {
+                    for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
+                    {
+                        ListViewItem itm = listbox.SelectedItems[i];
+                        listbox.Items[itm.Index].Remove();
+                    }
+                }
+            }
+            else
+                MessageBox.Show("No items to delete");
+        }
+
         private void Encryptit()
         {
             try

@@ -74,6 +74,16 @@ namespace MDI
             }
         }
 
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var confirmation = MessageBox.Show("Would you like to save Changes?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (confirmation == DialogResult.Yes)
+            {
+                saveToolStripMenuItem_Click(this, null);
+            }
+            this.Close();
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int size = 0;
@@ -125,6 +135,28 @@ namespace MDI
             }
 
             MessageBox.Show(debugstring);
+        }
+
+        private void updateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var listbox = childstack.Peek().ListItem;
+            if (listbox.SelectedItems.Count > 0)
+            {
+                var confirmation = MessageBox.Show("Are you sure u want to modify row(s)", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (confirmation == DialogResult.Yes)
+                {
+                    for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
+                    {
+                        ListViewItem itm = listbox.SelectedItems[i];
+                        rECORDToolStripMenuItem_Click(this, null);
+                        var tempitem = listbox.Items[listbox.Items.Count - 1];
+                        listbox.Items[listbox.Items.Count - 1].Remove();
+                        listbox.Items[itm.Index] = tempitem;
+                    }
+                }
+            }
+            else
+                MessageBox.Show("No items to modify");
         }
     }
 }

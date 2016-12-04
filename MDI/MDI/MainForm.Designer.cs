@@ -40,7 +40,6 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cHILDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.rECORDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -102,8 +101,9 @@
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.insertToolStripMenuItem.Text = "Insert";
+            this.insertToolStripMenuItem.Click += new System.EventHandler(this.insertToolStripMenuItem_Click);
             // 
             // updateToolStripMenuItem
             // 
@@ -128,8 +128,7 @@
             // debugToolStripMenuItem
             // 
             this.debugToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cHILDToolStripMenuItem,
-            this.rECORDToolStripMenuItem});
+            this.cHILDToolStripMenuItem});
             this.debugToolStripMenuItem.Name = "debugToolStripMenuItem";
             this.debugToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
             this.debugToolStripMenuItem.Text = "Debug";
@@ -140,13 +139,6 @@
             this.cHILDToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.cHILDToolStripMenuItem.Text = "CHILD";
             this.cHILDToolStripMenuItem.Click += new System.EventHandler(this.cHILDToolStripMenuItem_Click);
-            // 
-            // rECORDToolStripMenuItem
-            // 
-            this.rECORDToolStripMenuItem.Name = "rECORDToolStripMenuItem";
-            this.rECORDToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
-            this.rECORDToolStripMenuItem.Text = "RECORD";
-            this.rECORDToolStripMenuItem.Click += new System.EventHandler(this.rECORDToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -180,7 +172,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cHILDToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem rECORDToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }

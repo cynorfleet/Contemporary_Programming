@@ -158,5 +158,15 @@ namespace MDI
             else
                 MessageBox.Show("No items to modify");
         }
+
+        private void insertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (childstack.Count > 0)
+            {
+                //  Open a Record Input Dialog Window
+                InputDialog entryform = new InputDialog();
+                entryform.ShowDialog();
+            }
+        }
     }
 }

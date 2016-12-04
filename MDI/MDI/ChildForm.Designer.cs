@@ -94,6 +94,7 @@
             this.Controls.Add(this.labelDetails);
             this.Name = "ChildForm";
             this.Text = "ChildForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ChildForm_FormClosing);
             this.Load += new System.EventHandler(this.ChildForm_Load);
             this.Enter += new System.EventHandler(this.ChildForm_Enter);
             this.Leave += new System.EventHandler(this.ChildForm_Leave);

@@ -35,6 +35,11 @@ namespace MDI
             MainForm.childstack.Push(this);
         }
 
+        private void ChildForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            MainForm.childstack.Pop();
+        }
+
         private void ChildForm_Leave(object sender, EventArgs e)
         {
             MainForm.childstack.Pop();

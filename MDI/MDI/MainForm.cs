@@ -42,21 +42,24 @@ namespace MDI
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var listbox = childstack.Peek().ListItem;
-            if (listbox.SelectedItems.Count > 0)
+            if (childstack.Count > 0)
             {
-                var confirmation = MessageBox.Show("Are you sure u want to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmation == DialogResult.Yes)
+                var listbox = childstack.Peek().ListItem;
+                if (listbox.SelectedItems.Count > 0)
                 {
-                    for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
+                    var confirmation = MessageBox.Show("Are you sure u want to delete?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmation == DialogResult.Yes)
                     {
-                        ListViewItem itm = listbox.SelectedItems[i];
-                        listbox.Items[itm.Index].Remove();
+                        for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
+                        {
+                            ListViewItem itm = listbox.SelectedItems[i];
+                            listbox.Items[itm.Index].Remove();
+                        }
                     }
                 }
+                else
+                    MessageBox.Show("No items to delete");
             }
-            else
-                MessageBox.Show("No items to delete");
         }
 
         private void Encryptit()
@@ -84,10 +87,21 @@ namespace MDI
             this.Close();
         }
 
+        private void insertToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (childstack.Count > 0)
+            {
+                //  Open a Record Input Dialog Window
+                InputDialog entryform = new InputDialog();
+                entryform.ShowDialog();
+            }
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             int size = 0;
             string text = "";
+
             // Show the dialog and get result.
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
@@ -103,6 +117,17 @@ namespace MDI
                 }
             }
             MessageBox.Show(text); // <-- For debugging use.
+
+            //  Add an instance of a child form to a list
+            childList.Add(new ChildForm());
+
+            childList.Last().MdiParent = this;
+
+            //  Stack DEBUG
+            childstack.Push(childList.Last());
+
+            //  Show the child form
+            childList.Last().Show();
         }
 
         private void rECORDToolStripMenuItem_Click(object sender, EventArgs e)
@@ -114,58 +139,54 @@ namespace MDI
 
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string debugstring = "";
-            StringBuilder sb;
-            ListView tempview = childstack.Peek().ListItem;
-
-            if (childstack.Peek().ListItem.Items.Count > 0)
+            if (childstack.Count > 0)
             {
-                // the actual data
-                foreach (ListViewItem item in tempview.Items)
+                string debugstring = "";
+                StringBuilder sb;
+                ListView tempview = childstack.Peek().ListItem;
+
+                if (childstack.Peek().ListItem.Items.Count > 0)
                 {
-                    sb = new StringBuilder();
-
-                    foreach (ListViewItem.ListViewSubItem listViewSubItem in item.SubItems)
+                    // the actual data
+                    foreach (ListViewItem item in tempview.Items)
                     {
-                        sb.Append(string.Format("{0}\t", listViewSubItem.Text));
-                    }
-                    debugstring += sb.ToString();
-                    debugstring += '\n';
-                }
-            }
+                        sb = new StringBuilder();
 
-            MessageBox.Show(debugstring);
+                        foreach (ListViewItem.ListViewSubItem listViewSubItem in item.SubItems)
+                        {
+                            sb.Append(string.Format("{0}\t", listViewSubItem.Text));
+                        }
+                        debugstring += sb.ToString();
+                        debugstring += '\n';
+                    }
+                }
+
+                MessageBox.Show(debugstring);
+            }
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var listbox = childstack.Peek().ListItem;
-            if (listbox.SelectedItems.Count > 0)
-            {
-                var confirmation = MessageBox.Show("Are you sure u want to modify row(s)", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (confirmation == DialogResult.Yes)
-                {
-                    for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
-                    {
-                        ListViewItem itm = listbox.SelectedItems[i];
-                        rECORDToolStripMenuItem_Click(this, null);
-                        var tempitem = listbox.Items[listbox.Items.Count - 1];
-                        listbox.Items[listbox.Items.Count - 1].Remove();
-                        listbox.Items[itm.Index] = tempitem;
-                    }
-                }
-            }
-            else
-                MessageBox.Show("No items to modify");
-        }
-
-        private void insertToolStripMenuItem_Click(object sender, EventArgs e)
-        {
             if (childstack.Count > 0)
             {
-                //  Open a Record Input Dialog Window
-                InputDialog entryform = new InputDialog();
-                entryform.ShowDialog();
+                var listbox = childstack.Peek().ListItem;
+                if (listbox.SelectedItems.Count > 0)
+                {
+                    var confirmation = MessageBox.Show("Are you sure u want to modify row(s)", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (confirmation == DialogResult.Yes)
+                    {
+                        for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
+                        {
+                            ListViewItem itm = listbox.SelectedItems[i];
+                            rECORDToolStripMenuItem_Click(this, null);
+                            var tempitem = listbox.Items[listbox.Items.Count - 1];
+                            listbox.Items[listbox.Items.Count - 1].Remove();
+                            listbox.Items[itm.Index] = tempitem;
+                        }
+                    }
+                }
+                else
+                    MessageBox.Show("No items to modify");
             }
         }
     }

@@ -53,9 +53,11 @@
             this.ProductName,
             this.QuantityRequired,
             this.Quantity});
+            this.ListItem.FullRowSelect = true;
+            this.ListItem.GridLines = true;
             this.ListItem.Location = new System.Drawing.Point(40, 143);
             this.ListItem.Name = "ListItem";
-            this.ListItem.Size = new System.Drawing.Size(603, 318);
+            this.ListItem.Size = new System.Drawing.Size(447, 318);
             this.ListItem.TabIndex = 1;
             this.ListItem.UseCompatibleStateImageBehavior = false;
             // 
@@ -68,31 +70,32 @@
             // 
             this.ProductName.Text = "Name";
             this.ProductName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.ProductName.Width = 200;
+            this.ProductName.Width = 100;
             // 
             // QuantityRequired
             // 
             this.QuantityRequired.Text = "Quantity Required";
             this.QuantityRequired.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.QuantityRequired.Width = 300;
+            this.QuantityRequired.Width = 100;
             // 
             // Quantity
             // 
             this.Quantity.Text = "Quantity";
             this.Quantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.Quantity.Width = 300;
+            this.Quantity.Width = 100;
             // 
             // ChildForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(692, 503);
+            this.ClientSize = new System.Drawing.Size(551, 503);
             this.Controls.Add(this.ListItem);
             this.Controls.Add(this.labelDetails);
             this.Name = "ChildForm";
             this.Text = "ChildForm";
             this.Load += new System.EventHandler(this.ChildForm_Load);
+            this.Click += new System.EventHandler(this.ChildForm_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,10 +104,10 @@
         #endregion
 
         private System.Windows.Forms.Label labelDetails;
-        private System.Windows.Forms.ListView ListItem;
         public System.Windows.Forms.ColumnHeader ID;
         public System.Windows.Forms.ColumnHeader ProductName;
         public System.Windows.Forms.ColumnHeader QuantityRequired;
         public System.Windows.Forms.ColumnHeader Quantity;
+        public System.Windows.Forms.ListView ListItem;
     }
 }

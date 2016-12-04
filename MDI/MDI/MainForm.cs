@@ -14,30 +14,17 @@ namespace MDI
 {
     public partial class MainForm : Form
     {
+        public static Stack<ChildForm> childstack = new Stack<ChildForm>();
         public static Record record = new Record();
         public static List<Record> recordlist = new List<Record>();
+        public static ChildForm tempChild;
 
         //          GLOBALS         //
         private List<ChildForm> childList = new List<ChildForm>();
 
-        private ChildForm tempChild;
-
         public MainForm()
         {
             InitializeComponent();
-        }
-
-        public static void GrabInput(Record otherRecord)
-        {
-            //  Grab record data
-            record = otherRecord;
-            recordlist.Add(record);
-        }
-
-        public void SendtoChild()
-        {
-            tempChild.record = record;
-            tempChild.UpdateData();
         }
 
         private void cHILDToolStripMenuItem_Click(object sender, EventArgs e)
@@ -48,6 +35,9 @@ namespace MDI
             //  Set parent form for the child window
             childList.Last().MdiParent = this;
             tempChild = ActiveMdiChild as ChildForm;
+
+            //  Stack DEBUG
+            childstack.Push(childList.Last());
 
             //  Show the child form
             childList.Last().Show();

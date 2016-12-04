@@ -13,6 +13,8 @@ namespace MDI
 {
     public partial class InputDialog : Form
     {
+        private List<Record> recordList = new List<Record>();
+
         public InputDialog()
         {
             InitializeComponent();
@@ -25,15 +27,22 @@ namespace MDI
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            Record record = new Record();
-            record.ID = Int32.Parse(textBoxID.Text);
-            record.QtyReq = Int32.Parse(textBoxQtyRequired.Text);
-            record.Quantity = Int32.Parse(textBoxQty.Text);
-            record.Name = textBoxName.Text;
+            Record temprecord = new Record();
 
-            //  Send Record to main form
-            MainForm.GrabInput(record);
+            temprecord.Name = textBoxName.Text;
+            temprecord.ID = Int32.Parse(textBoxID.Text);
+            temprecord.QtyReq = Int32.Parse(textBoxQtyRequired.Text);
+            temprecord.Quantity = Int32.Parse(textBoxQty.Text);
 
+            ListViewItem[] listboxitem = new ListViewItem[1];
+
+            // Create items and three sets of subitems for each item.
+            listboxitem[0] = new ListViewItem(temprecord.ID + "", 0);
+            listboxitem[0].SubItems.Add(temprecord.Name);
+            listboxitem[0].SubItems.Add(temprecord.QtyReq + "");
+            listboxitem[0].SubItems.Add(temprecord.Quantity + "");
+
+            MainForm.childstack.Peek().ListItem.Items.AddRange(listboxitem);
             this.Close();
         }
     }

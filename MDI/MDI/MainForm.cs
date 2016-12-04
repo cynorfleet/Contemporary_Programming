@@ -13,9 +13,15 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This is the main window. It will host CHILDMDI windows
+| Description : This is the main window. It will host CHILD MDI windows
 |               and call an INPUTDIALOG when appropriate. Available
 |               operations for records are INSERT, UPDATE, and DELETE.
+|
+|               UPDATE -- Will update multiple selected fields to ACTIVE child appropriately
+|               DELETE -- Will delete multiple selected fields to ACTIVE child appropriately
+|               INSERT -- Will add a new field to ACTIVE child appropriately
+|
+|               This program implements a static STACK to keep track of the ACTIVE MDI child
 |
 | Known Bugs :	IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
 |				SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE
@@ -63,9 +69,9 @@ namespace MDI
             /*------------------------------------- deleteToolStripMenuItem_Click ----------
             |  Function: 	deleteToolStripMenuItem_Click()
             |
-            |  Purpose: 	Defines the menu operation delete. It will check the stack to find active
-            |               MDIChild. It will then cont the total amount of selected items and delete them
-            |               BOTTOM-UP.
+            |  Purpose: 	Defines the menu operation delete. It will check the stack to
+            |               find active MDIChild. It will then cont the total amount of
+            |               selected items and delete them BOTTOM-UP.
             |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
@@ -94,7 +100,6 @@ namespace MDI
                         }
                     }
                 }
-
                 //  if no items are selected display
                 else
                     MessageBox.Show("No items to delete");
@@ -119,11 +124,11 @@ namespace MDI
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*-------------------------------------------- exitToolStripMenuItem_Click ----------
+            /*------------------------------ exitToolStripMenuItem_Click ----------
             |  Function: 	exitToolStripMenuItem_Click()
             |
-            |  Purpose: 	Defines the EXIT menu operation. It will prompt user to save then exit
-            |               application.
+            |  Purpose: 	Defines the EXIT menu operation. It will prompt user
+            |               to save then exit application.
             |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
@@ -138,9 +143,24 @@ namespace MDI
             this.Close();
         }
 
+        private void GrabData(ListViewItem e, InputDialog t)
+        {
+            /*-------------------------------------------- GrabData ----------
+            |  Function: 	GrabData()
+            |
+            |  Purpose: 	Captures data from e (Child MDI Listview)
+            |
+            |  Returns:  	N/A
+            *---------------------------------------------------------------------*/
+            t.textBoxID.Text = e.Text;
+            t.textBoxName.Text = e.SubItems[1].Text;
+            t.textBoxQty.Text = e.SubItems[2].Text;
+            t.textBoxQtyRequired.Text = e.SubItems[3].Text;
+        }
+
         private void insertToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*-------------------------------------------- insertToolStripMenuItem_Click ----------
+            /*--------------------------- insertToolStripMenuItem_Click ----------
             |  Function: 	insertToolStripMenuItem_Click()
             |
             |  Purpose: 	Defines the INSERT menu operation.
@@ -237,19 +257,19 @@ namespace MDI
                         debugstring += '\n';
                     }
                 }
-
+                //  Show readout of data
                 MessageBox.Show(debugstring);
             }
         }
 
         private void updateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*-------------------------------------------- updateToolStripMenuItem_Click ----------
+            /*------------------------------------- updateToolStripMenuItem_Click ----------
             |  Function: 	updateToolStripMenuItem_Click()
             |
-            |  Purpose: 	If a Child MDI window is open and ListBox items are selected, display
-            |               confirmation dialog. If confirmed modify the selected entries in the order
-            |               of BOTTOM-UP.
+            |  Purpose: 	If a Child MDI window is open and ListBox items are selected,
+            |               display confirmation dialog. If confirmed modify the selected
+            |               entries in the order of BOTTOM-UP.
             |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
@@ -263,13 +283,18 @@ namespace MDI
 
                     if (confirmation == DialogResult.Yes)
                     {
+                        //  Loop thru the selected items by index
                         for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
                         {
+                            //  Grab an element
                             ListViewItem itm = listbox.SelectedItems[i];
-                            insertToolStripMenuItem_Click(this, null);
-                            var tempitem = listbox.Items[listbox.Items.Count - 1];
-                            listbox.Items[listbox.Items.Count - 1].Remove();
-                            listbox.Items[itm.Index] = tempitem;
+
+                            //  Open a Input Dialog Window
+                            InputDialog entryform = new InputDialog(itm, true);
+                            //  Grab Child's ListView contents and write to Input Form
+                            GrabData(itm, entryform);
+                            //  Show the Input Form
+                            entryform.Show();
                         }
                     }
                 }

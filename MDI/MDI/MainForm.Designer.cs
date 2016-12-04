@@ -41,6 +41,7 @@
             this.debugToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cHILDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rECORDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,12 +73,14 @@
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -98,19 +101,19 @@
             // insertToolStripMenuItem
             // 
             this.insertToolStripMenuItem.Name = "insertToolStripMenuItem";
-            this.insertToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.insertToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.insertToolStripMenuItem.Text = "Insert";
             // 
             // updateToolStripMenuItem
             // 
             this.updateToolStripMenuItem.Name = "updateToolStripMenuItem";
-            this.updateToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.updateToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.updateToolStripMenuItem.Text = "Update";
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.deleteToolStripMenuItem.Text = "Delete";
             // 
             // aboutToolStripMenuItem
@@ -131,14 +134,14 @@
             // cHILDToolStripMenuItem
             // 
             this.cHILDToolStripMenuItem.Name = "cHILDToolStripMenuItem";
-            this.cHILDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.cHILDToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.cHILDToolStripMenuItem.Text = "CHILD";
             this.cHILDToolStripMenuItem.Click += new System.EventHandler(this.cHILDToolStripMenuItem_Click);
             // 
             // rECORDToolStripMenuItem
             // 
             this.rECORDToolStripMenuItem.Name = "rECORDToolStripMenuItem";
-            this.rECORDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rECORDToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.rECORDToolStripMenuItem.Text = "RECORD";
             this.rECORDToolStripMenuItem.Click += new System.EventHandler(this.rECORDToolStripMenuItem_Click);
             // 
@@ -153,7 +156,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "Main Form";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -176,6 +178,7 @@
         private System.Windows.Forms.ToolStripMenuItem debugToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cHILDToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rECORDToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

@@ -13,6 +13,8 @@ namespace MDI
 {
     public partial class ChildForm : Form
     {
+        private Record record = new Record();
+
         public ChildForm()
         {
             InitializeComponent();
@@ -28,9 +30,14 @@ namespace MDI
             ListItem.FullRowSelect = true;
         }
 
-        private void ChildForm_Click(object sender, EventArgs e)
+        private void ChildForm_Enter(object sender, EventArgs e)
         {
-            MainForm.tempChild = this;
+            MainForm.childstack.Push(this);
+        }
+
+        private void ChildForm_Leave(object sender, EventArgs e)
+        {
+            MainForm.childstack.Pop();
         }
     }
 }

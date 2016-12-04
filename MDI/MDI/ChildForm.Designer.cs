@@ -95,7 +95,8 @@
             this.Name = "ChildForm";
             this.Text = "ChildForm";
             this.Load += new System.EventHandler(this.ChildForm_Load);
-            this.Click += new System.EventHandler(this.ChildForm_Click);
+            this.Enter += new System.EventHandler(this.ChildForm_Enter);
+            this.Leave += new System.EventHandler(this.ChildForm_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 

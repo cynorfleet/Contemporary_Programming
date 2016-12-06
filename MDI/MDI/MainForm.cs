@@ -113,20 +113,6 @@ namespace MDI
             recordlist.Clear();
         }
 
-        private void Encryptit()
-        {
-            var list = childstack.Peek().ListItem;
-            foreach (ListViewItem item in list.Items)
-            {
-                record.ID = Int32.Parse(item.Text);
-                record.Name = item.SubItems[1].Text;
-                record.QtyReq = Int32.Parse(item.SubItems[2].Text);
-                record.Quantity = Int32.Parse(item.SubItems[3].Text);
-                recordlist.Add(record);
-                MessageBox.Show("Record: " + record.ToString());
-            }
-        }
-
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /*------------------------------ exitToolStripMenuItem_Click ----------
@@ -148,6 +134,26 @@ namespace MDI
             this.Close();
         }
 
+        private void GetList()
+        {
+            /*-------------------------------------------- GetList ----------
+            |  Function: 	GetList()
+            |
+            |  Purpose: 	Gets an itemized record list
+            |
+            |  Returns:  	N/A
+            *---------------------------------------------------------------------*/
+            var list = childstack.Peek().ListItem;
+            foreach (ListViewItem item in list.Items)
+            {
+                record.ID = Int32.Parse(item.Text);
+                record.Name = item.SubItems[1].Text;
+                record.QtyReq = Int32.Parse(item.SubItems[2].Text);
+                record.Quantity = Int32.Parse(item.SubItems[3].Text);
+                recordlist.Add(record);
+                MessageBox.Show("Record: " + record.ToString());
+            }
+        }
         private void GrabData(ListViewItem e, InputDialog t = null)
         {
             /*-------------------------------------------- GrabData ----------
@@ -236,6 +242,7 @@ namespace MDI
 
             try
             {
+                //  Decrypt data
                 using (Stream stream = File.Open(file, FileMode.Open))
                 {
                     BinaryFormatter bin = new BinaryFormatter();
@@ -288,6 +295,7 @@ namespace MDI
                     saveFileDialog1.FilterIndex = 0;
                     saveFileDialog1.RestoreDirectory = true;
 
+                    //  On OK store path and delete existing file
                     if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
                         savefilepath = saveFileDialog1.FileName;
@@ -296,16 +304,17 @@ namespace MDI
 
                     try
                     {
+                        //  Encrypt the Data
                         using (Stream stream = File.Open(savefilepath, FileMode.Create))
                         {
-                            Encryptit();
+                            GetList();
                             BinaryFormatter encrypt = new BinaryFormatter();
                             encrypt.Serialize(stream, recordlist);
-                            MessageBox.Show("ENCRYPTING");
                         }
                     }
                     catch
                     {
+                        //  Show Message on Failure
                         var retry = MessageBox.Show("Change your mind huh?", "WARNING", MessageBoxButtons.RetryCancel,
                             MessageBoxIcon.Warning);
                         if (retry == DialogResult.Retry)

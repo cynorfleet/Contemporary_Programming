@@ -13,8 +13,7 @@
 |
 +---------------------------------------------------------------------------- -
 |
-| Description : This form will capture user input and send data to the
-|               ACTIVE MDI CHILD's ListBox.
+| Description : This form will capture user input
 |
 | Known Bugs :	IF THE PROGRAM DOES NOT FUNCTION CORRECTLY IN SOME
 |				SITUATIONS, DESCRIBE THE SITUATIONS AND PROBLEMS HERE
@@ -83,13 +82,6 @@ namespace MDI
             |  Function: 	buttonOK_Click()
             |
             |  Purpose: 	Defines OK button behavior.
-            |
-            |               If not Updating:
-            |                               - Will add user input into ListView format
-            |                                   and send them to Child ListView form.
-            |                               - The window will then close.
-            |               If Updating:
-            |                               - Will modify ChildMDI's ListView contents
             |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/

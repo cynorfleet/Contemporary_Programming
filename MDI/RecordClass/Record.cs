@@ -31,6 +31,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,28 +52,9 @@ namespace RecordClass
             *---------------------------------------------------------------------*/
             ID = 0;
             Name = string.Empty;
-            QtyReq = 0;
+            QtyReq = 0.0;
             Quantity = 0;
             Practice = string.Empty;
-        }
-
-        public Record(Record otherrecord)
-        {
-            /*-------------------------------------------- Record ----------
-            |  Function: 	Record()
-            |
-            |  Purpose: 	Copy constructor
-            |
-            |  Parameters:
-            |	otherrecord (IN) -- another Record object
-            |
-            |  Returns:  	N/A
-            *---------------------------------------------------------------------*/
-            ID = otherrecord.ID;
-            Name = otherrecord.Name;
-            QtyReq = otherrecord.QtyReq;
-            Quantity = otherrecord.Quantity;
-            Practice = otherrecord.Practice;
         }
 
         public Record(int id, string name, string practice, int qtyReq, int quantity)
@@ -91,12 +73,68 @@ namespace RecordClass
             Practice = practice;
         }
 
+        public Record(SerializationInfo info, StreamingContext ctxt)
+        {
+            /*-------------------------------------------- Employee ----------
+            |  Function: 	Employee()
+            |
+            |  Purpose: 	Get the values from info and assign them to the appropriate properties
+            |
+            |  Returns:  	N/A
+            *---------------------------------------------------------------------*/
+            ID = (int)info.GetValue("ID", typeof(int));
+            Name = (String)info.GetValue("Name", typeof(string));
+            QtyReq = (double)info.GetValue("Quantity Required", typeof(double));
+            Quantity = (int)info.GetValue("Quantity", typeof(int));
+        }
+
         //              Attributes              //
         public int ID { get; set; }
 
         public string Name { get; set; }
+
         public string Practice { get; set; }
-        public int QtyReq { get; set; }
+
+        public double QtyReq { get; set; }
+
         public int Quantity { get; set; }
+
+        public void Clear()
+        {
+            ID = 0;
+            Name = string.Empty;
+            QtyReq = 0.0;
+            Quantity = 0;
+            Practice = string.Empty;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            /*-------------------------------------------- GetObjectData ----------
+            |  Function: 	GetObjectData()
+            |
+            |  Purpose: 	Serialization function
+            |
+            |  Returns:  	N/A
+            *---------------------------------------------------------------------*/
+            info.AddValue("ID", ID);
+            info.AddValue("Name", Name);
+            info.AddValue("Quantity Required", QtyReq);
+            info.AddValue("Quantity", Quantity);
+        }
+
+        public override string ToString()
+        {
+            /*-------------------------------------------- ToString ----------
+            |  Function: 	ToString()
+            |
+            |  Purpose: 	Data dump of record in string format
+            |
+            |  Returns:  	one string
+            *---------------------------------------------------------------------*/
+            return (ID + "\n" + Name
+                + "\n" + QtyReq
+                + "\n " + Quantity + "\n");
+        }
     }
 }

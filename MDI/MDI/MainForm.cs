@@ -30,6 +30,7 @@
 *= == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == == */
 
 using MDI;
+using password;
 using RecordClass;
 using System;
 using System.Collections.Generic;
@@ -41,6 +42,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace MDI
@@ -52,6 +54,9 @@ namespace MDI
         //                          GLOBALS                           //
         private List<ChildForm> childList = new List<ChildForm>();
 
+        private Record record = new Record();
+        private List<Record> recordlist = new List<Record>();
+
         public MainForm()
         {
             /*-------------------------------------------- MainForm ----------
@@ -62,6 +67,7 @@ namespace MDI
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
             InitializeComponent();
+            new LoginForm().ShowDialog();
         }
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -104,21 +110,20 @@ namespace MDI
                 else
                     MessageBox.Show("No items to delete");
             }
+            recordlist.Clear();
         }
 
         private void Encryptit()
         {
-            /////////////////////// PROTOTYPE /////////////////////////
-            try
+            var list = childstack.Peek().ListItem;
+            foreach (ListViewItem item in list.Items)
             {
-                using (Stream stream = File.Open("data.bin", FileMode.Create))
-                {
-                    BinaryFormatter bin = new BinaryFormatter();
-                    //   bin.Serialize(stream, );
-                }
-            }
-            catch (IOException)
-            {
+                record.ID = Int32.Parse(item.Text);
+                record.Name = item.SubItems[1].Text;
+                record.QtyReq = Int32.Parse(item.SubItems[2].Text);
+                record.Quantity = Int32.Parse(item.SubItems[3].Text);
+                recordlist.Add(record);
+                MessageBox.Show("Record: " + record.ToString());
             }
         }
 
@@ -143,7 +148,7 @@ namespace MDI
             this.Close();
         }
 
-        private void GrabData(ListViewItem e, InputDialog t)
+        private void GrabData(ListViewItem e, InputDialog t = null)
         {
             /*-------------------------------------------- GrabData ----------
             |  Function: 	GrabData()
@@ -152,10 +157,20 @@ namespace MDI
             |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
-            t.textBoxID.Text = e.Text;
-            t.textBoxName.Text = e.SubItems[1].Text;
-            t.textBoxQty.Text = e.SubItems[2].Text;
-            t.textBoxQtyRequired.Text = e.SubItems[3].Text;
+            if (t == null)
+            {
+                record.ID = Int32.Parse(e.Text);
+                record.Name = e.SubItems[1].Text;
+                record.QtyReq = Int32.Parse(e.SubItems[2].Text);
+                record.Quantity = Int32.Parse(e.SubItems[3].Text);
+            }
+            if (t != null)
+            {
+                t.textBoxID.Text = e.Text;
+                t.textBoxName.Text = e.SubItems[1].Text;
+                t.textBoxQty.Text = e.SubItems[2].Text;
+                t.textBoxQtyRequired.Text = e.SubItems[3].Text;
+            }
         }
 
         private void insertToolStripMenuItem_Click(object sender, EventArgs e)
@@ -175,6 +190,22 @@ namespace MDI
             }
         }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //  Add an instance of a child form to a list
+            childList.Add(new ChildForm());
+
+            childList.Last().MdiParent = this;
+
+            childstack.Push(childList.Last());
+
+            childstack.Peek().Show();
+        }
+
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
             /*-------------------------------------------- openToolStripMenuItem_Click ----------
@@ -186,27 +217,14 @@ namespace MDI
             |
             |  Returns:  	N/A
             *---------------------------------------------------------------------*/
-            int size = 0;
-            string text = "";
-
-            /////////////////////// PROTOTYPE /////////////////////////
+            string file = "";
 
             // Show the dialog and get result.
             DialogResult result = openFileDialog1.ShowDialog();
             if (result == DialogResult.OK) // Test result.
             {
-                string file = openFileDialog1.FileName;
-                try
-                {
-                    //  Read file contents
-                    text = File.ReadAllText(file);
-                    size = text.Length;
-                }
-                catch (IOException)
-                {
-                }
+                file = openFileDialog1.FileName;
             }
-            MessageBox.Show(text); // <-- For debugging use.
 
             //  Add an instance of a child form to a list
             childList.Add(new ChildForm());
@@ -215,6 +233,28 @@ namespace MDI
 
             //  Stack DEBUG
             childstack.Push(childList.Last());
+
+            try
+            {
+                using (Stream stream = File.Open(file, FileMode.Open))
+                {
+                    BinaryFormatter bin = new BinaryFormatter();
+                    recordlist = (List<Record>)bin.Deserialize(stream);
+                    foreach (Record parsed in recordlist)
+                    {
+                        var thisone = childstack.Peek().ListItem.Items;
+                        var index = thisone.Add(parsed.ID + "").Index;
+                        thisone[index].SubItems.Add(parsed.Name);
+                        thisone[index].SubItems.Add(parsed.QtyReq + "");
+                        thisone[index].SubItems.Add(parsed.Quantity + "");
+                    }
+                    stream.Close();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Could not open file");
+            }
 
             //  Show the child form
             childList.Last().Show();
@@ -232,33 +272,46 @@ namespace MDI
             *---------------------------------------------------------------------*/
             if (childstack.Count > 0)
             {
-                string debugstring = "";
-                StringBuilder sb;
+                string savefilepath = "";
                 ListView tempview = childstack.Peek().ListItem;
-
-                /////////////////////// PROTOTYPE /////////////////////////
 
                 //  if active MDI child has items in list box
                 if (childstack.Peek().ListItem.Items.Count > 0)
+
+                //  Open Save to window
                 {
-                    // grab the data from the ListBox (tempview is a link to the active child's Listbox)
-                    foreach (ListViewItem item in tempview.Items)
+                    SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                    saveFileDialog1.Title = "Save inventory File";
+                    saveFileDialog1.CheckPathExists = true;
+                    saveFileDialog1.DefaultExt = "dab";
+                    saveFileDialog1.Filter = "Dank Database files (*.dab)|*.dab|All files (*.*)|*.*";
+                    saveFileDialog1.FilterIndex = 0;
+                    saveFileDialog1.RestoreDirectory = true;
+
+                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                     {
-                        sb = new StringBuilder();
+                        savefilepath = saveFileDialog1.FileName;
+                        File.Delete(savefilepath);
+                    }
 
-                        //  start building the string for sub items
-                        foreach (ListViewItem.ListViewSubItem listViewSubItem in item.SubItems)
+                    try
+                    {
+                        using (Stream stream = File.Open(savefilepath, FileMode.Create))
                         {
-                            sb.Append(string.Format("{0}\t", listViewSubItem.Text));
+                            Encryptit();
+                            BinaryFormatter encrypt = new BinaryFormatter();
+                            encrypt.Serialize(stream, recordlist);
+                            MessageBox.Show("ENCRYPTING");
                         }
-
-                        //  send string builder to debug string
-                        debugstring += sb.ToString();
-                        debugstring += '\n';
+                    }
+                    catch
+                    {
+                        var retry = MessageBox.Show("Change your mind huh?", "WARNING", MessageBoxButtons.RetryCancel,
+                            MessageBoxIcon.Warning);
+                        if (retry == DialogResult.Retry)
+                            this.saveToolStripMenuItem_Click(sender, e);
                     }
                 }
-                //  Show readout of data
-                MessageBox.Show(debugstring);
             }
         }
 
@@ -283,7 +336,7 @@ namespace MDI
 
                     if (confirmation == DialogResult.Yes)
                     {
-                        //  Loop thru the selected items by index
+                        //  Loop through the selected items by index
                         for (int i = listbox.SelectedItems.Count - 1; i >= 0; i--)
                         {
                             //  Grab an element
@@ -294,7 +347,7 @@ namespace MDI
                             //  Grab Child's ListView contents and write to Input Form
                             GrabData(itm, entryform);
                             //  Show the Input Form
-                            entryform.Show();
+                            entryform.ShowDialog();
                         }
                     }
                 }
